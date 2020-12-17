@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "diag/Trace.h"
+#include "cmsis/cmsis_device.h"
 
 // ----------------------------------------------------------------------------
 
@@ -74,7 +75,7 @@ void myTIM2_Init(){
 
 	/* Configure TIM2: buffer auto-reload, count down, stop on underflow,
 	 * enable update events, interrupt on underflow only */
-	TIM2->CR1 = ((uint16_t)0x008C);
+	TIM2->CR1 = ((uint16_t)0x009C);
 
 	/* Set clock prescaler value */
 	TIM2->PSC = myTIM2_PRESCALER;
@@ -107,8 +108,7 @@ void myGPIOB_Init(){
 /* IRQ Handlers */
 void TIM2_IRQHandler(){
 	/* Check if update interrupt flag is indeed set */
-	if ((TIM2->SR & TIM_SR_UIF) != 0)
-	{
+	if ((TIM2->SR & TIM_SR_UIF) != 0){
 		trace_printf("\n*** Overflow! ***\n");
 
 		/* Clear update interrupt flag */
