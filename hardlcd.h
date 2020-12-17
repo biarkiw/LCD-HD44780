@@ -2,9 +2,10 @@
  * hardlcd.h
  *
  *  Created on: 19 Nov 2020
- *      Author: biarki
- *  this header file is designed for the setup in the ECE 355 lab,
- *  and will be subject to change in the future
+ *      Author: Biarki Weeks
+ *
+ *  This header file is designed for interfaceing with an LCD with an
+ *  STM32F0 Discovery using the I/O setup detailed below
  */
 
 #ifndef HARDLCD_H_
@@ -13,7 +14,7 @@
 #include "cmsis/cmsis_device.h"
 
 /*registers for current project*/
-#define TIMER (TIM2->CNT)   //counter register
+#define TIMER (TIM2)   //counter register
 #define IOOUT (GPIOB->ODR)  //output register to send data to lcd
 #define IOIN (GPIOB->IDR)   //intput register to get data from lcd
 
@@ -27,19 +28,19 @@
 
 /*general opperation bit definition for current project*/
 
-#define LCD_CLEAR ((uint16_t)0x0100)    //clear display
-#define LCD_RHOME ((uint16_t)0x0200)    //return home
-#define LCD_EMS ((uint16_t)0x0600)      //entry mode set
-#define LCD_PCONT ((uint16_t)0x0C00)    //display ON/OFF control
-#define LCD_CURSOR ((uint16_t)0x1000)   //cursor/display shift
-#define LCD_FUNCTSET ((uint16_t)0x3800) //function set (0X3C00) to change font
-#define LCD_BUSY ((uint16_t)0x8000)     //busy flag from lcd
-#define LCD_READBF ((uint16_t)0x0040)   //set to read busy flag
-#define LCD_LINE1 ((uint8_t)0x00)       //DDRAM address for line 1
-#define LCD_LINE2 ((uint8_t)0x40)       //DDRAM address for line 2
-#define LCD_SETDRAM ((uint8_t)0x80)     //set DDRAM address
-#define LCD_WRITE ((uint16_t)0x0030)     //write do lcd, must be or'd with data
-#define LCD_ENABLE ((uint16_t)0x0004)     //write do lcd, must be or'd with data
+#define LCD_CLEAR     ((uint16_t)0x0100)    //clear display
+#define LCD_RHOME     ((uint16_t)0x0200)    //return home
+#define LCD_EMS       ((uint16_t)0x0600)    //entry mode set
+#define LCD_PCONT     ((uint16_t)0x0C00)    //display ON/OFF control
+#define LCD_CURSOR    ((uint16_t)0x1000)    //cursor/display shift
+#define LCD_FUNCTSET  ((uint16_t)0x3800)    //function set (0X3C00) to change font
+#define LCD_BUSY      ((uint16_t)0x8000)    //busy flag from lcd
+#define LCD_READBF    ((uint16_t)0x0040)    //set to read busy flag
+#define LCD_LINE1     ((uint8_t)0x00)       //DDRAM address for line 1
+#define LCD_LINE2     ((uint8_t)0x40)       //DDRAM address for line 2
+#define LCD_SETDRAM   ((uint16_t)0x8000)    //set DDRAM address
+#define LCD_WRITE     ((uint16_t)0x0020)    //write do lcd, must be or'd with data
+#define LCD_ENABLE    ((uint16_t)0x0080)    //write do lcd, must be or'd with data
 
 
 /*character bit definition*/
